@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Posts</title>
+        <title>投稿画面</title>
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     </head>
@@ -13,8 +13,9 @@
         </h1>
         <div class="content">
             <div class="content__post">
-                <h3>本文</h3>
-                <p>{{ $post->body }}</p>    
+                <h3>{{ $post->image }}</h3>
+                <h3>説明</h3>
+                <p>{{ $post->caption }}</p>    
             </div>
         </div>
         <div class="footer">
