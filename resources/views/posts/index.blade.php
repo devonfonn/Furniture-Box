@@ -2,7 +2,10 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
    <head>
        <meta charset="utf-8">
-       <title>Furniture</title>
+       <x-app-layout>
+           <x-slot name="header">
+              <title>Furniture</title>
+           </x-slot>
       <!-- Fonts -->
       <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
       </head>
@@ -17,13 +20,30 @@
                 </h2>
                 <p class='image'>{{ $post->image }}</p>
                 <p class='caption'>{{ $post->caption }}</p>
+                <form action="/posts/{{ $post->id }}" id="form_{{ $post->id }}" method="post">
+                    @csrf
+                    @method('DELETE')
+                    <button type="button" onclick="deletePost({{ $post->id }})">delete</button>
+                </form>
               </div>
               @endforeach
           </div>
           <div class='paginate'>
               {{ $posts->links() }}
           </div>
+          <script>
+              function deletePost(id) {
+                  'use strict'
+                  
+                  if (confirm('削除すると復元できません。\n本当に削除しますか？'))
+                  {
+                      document.getElementById(`form_${id}`).submit();
+                  }
+              }
+          </script>
       </body>
+       {{ Auth::user()->name }}
+      </x-app-layout>
 </html>      
    
        

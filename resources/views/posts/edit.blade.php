@@ -2,7 +2,10 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
    <head>
        <meta charset="utf-8">
-       <title>編集</title>
+       <x-app-layout>
+         <x-slot name="header">
+            <title>編集</title>
+         </x-slot>
       <!-- Fonts -->
       <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
       </head>
@@ -24,3 +27,5 @@
               </form>
           </div>
     　</body>
+    　 </x-app-layout>
+    </html>
