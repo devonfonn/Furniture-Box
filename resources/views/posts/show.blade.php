@@ -3,7 +3,10 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>投稿</title>
+        <x-app-layout>
+            <x-slot name="header">
+               <title>投稿</title>
+            </x-slot>
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     </head>
@@ -25,4 +28,5 @@
             <a href="/">戻る</a>
         </div>
     </body>
+     </x-app-layout>
 </html>
