@@ -16,8 +16,18 @@ class Post extends Model
        return $this->orderby('updated_at', 'DESC')->paginate($limit_count);
    }
    
+   public function store(Request $request)
+   {
+       $request->validate([
+           'post.title' => 'required',
+           'post.image' => 'required|image',
+           'post.caption' => 'required',
+           ]);
+   }
+   
     protected $fillable = [
        'title',
+       'image',
        'caption',
        ];
 }
