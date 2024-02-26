@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
+
 use Illuminate\Http\Request;
+use App\Models\Post;
+use App\Models\Category;
 use App\Http\Requests\PostRequest;
+use Cloudinary;
 
 
 class PostController extends Controller
@@ -19,17 +22,17 @@ class PostController extends Controller
         return view('posts.show')->with(['post' => $post]);
     }
     
-    public function create()
+    public function create(Category $category)
     {
-        return view('posts.create');
+        return view('posts.create')->with(['categories' => $category->get()]);
     }
     
     public function store(Request $request, Post $post)
     {
-        $input = $request['post'];
-        $post->fill($input)->save();
-        return redirect('/' . $post->id);
-    }
+            $input = $request['post'];
+            $post->fill($input)->save();
+            return redirect('/' . $post->id);
+    }  
     
     public function edit(Request $request, Post $post)
     {
@@ -53,4 +56,5 @@ class PostController extends Controller
         $post->delete();
         return redirect('/');
     }
+    
 }

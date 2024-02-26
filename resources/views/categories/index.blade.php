@@ -45,7 +45,4 @@
       </body>
        {{ Auth::user()->name }}
       </x-app-layout>
-</html>      
-   
-       
-    
+</html>    

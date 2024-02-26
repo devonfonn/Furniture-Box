@@ -13,7 +13,7 @@ class Post extends Model
     
     public function getPaginateByLimit(int $limit_count = 5)
    {
-       return $this->orderby('updated_at', 'DESC')->paginate($limit_count);
+       return $this::with('category')->orderby('updated_at', 'DESC')->paginate($limit_count);
    }
    
    public function store(Request $request)
@@ -25,10 +25,16 @@ class Post extends Model
            ]);
    }
    
+   public function category()
+   {
+       return $this->belongsTo(Category::class);
+   }
+   
     protected $fillable = [
        'title',
        'image',
        'caption',
+       'category_id'
        ];
 }
 

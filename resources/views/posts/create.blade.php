@@ -18,6 +18,14 @@
                   <input type="text" name="post[title]" placeholder="タイトル" value="{{ old('post.title') }}"/>
                   <p class="title__error" style="color:red">{{ $errors->first('post.title') }}</p>
               </div>
+              <div class="category">
+                  <h2>Category</h2>
+                  <select name="post[category_id]">
+                      @foreach($categories as $category)
+                      <option value="{{ $category->id }}">{{ $category->name }}</option>
+                      @endforeach
+                  </select>
+              </div>
               <div class="image">
                   <h2>Image</h2>
                   <label for="image">画像を選択してください</label>
