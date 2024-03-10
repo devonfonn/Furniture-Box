@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Auth;
 
 class Post extends Model
 {
@@ -29,6 +30,32 @@ class Post extends Model
    {
        return $this->belongsTo(Category::class);
    }
+   
+   public function comment()
+   {
+       return $this->belongsTo(Comment::class);
+   }
+   
+   public function favorite_user()
+{
+    return $this->hasMany(favorite_user::class, 'post_id');
+}
+
+ public function is_liked_by_auth_user()
+  {
+    $id = Auth::id();
+
+    $likers = array();
+    foreach($this->favorite_user as $favorite_user) {
+      array_push($likers, $favorite_user->user_id);
+    }
+
+    if (in_array($id, $likers)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
    
     protected $fillable = [
        'title',
