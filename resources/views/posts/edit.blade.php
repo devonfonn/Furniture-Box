@@ -27,7 +27,7 @@
                     @else
                         <p>画像がありません。</p>
                     @endif
-                     <label for="image">新しい画像を選択してください。</label>
+                     <label for="image">新しい画像を選択してください</label>
                      <input type="file" name="post[image]" class="form-control-file" id="image" name="image" value="{{ $post->image }}">
                    </div>
                    <div class='content__caption'>

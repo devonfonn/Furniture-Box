@@ -28,6 +28,12 @@
               </div>
               <div class="image">
                   <h2>Image</h2>
+                   @if (isset($post->image))
+                        <img src="{{ asset('storage/' . $post->image) }}" alt="Current Image" style="max-width: 200px;">
+                        <p>{{ $post->image }}</p>
+                    @else
+                        <p>画像がありません。</p>
+                    @endif
                   <label for="image">画像を選択してください</label>
                   <input type="file" name="post[image]" class="form-control-file" id="image" name="image">
               </div>

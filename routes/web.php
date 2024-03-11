@@ -39,7 +39,11 @@ Route::controller(PostController::class)->middleware(['auth'])->group(function()
 Route::get('/post/like/{id}', [PostController::class, 'like'])->name('post.like');
 Route::get('/post/unlike/{id}', [PostController::class, 'unlike'])->name('post.unlike');
 
+Route::post('/posts/search', [PostController::class, 'search'])->name('posts.search');
+
+
 Route::get('/categories/{category}', [CategoryController::class,'index'])->middleware("auth");
+
 
 Route::controller(CommentController::class)->middleware(['auth'])->group(function(){
     Route::post('/comment/{post}', 'store')->name('comments.store');

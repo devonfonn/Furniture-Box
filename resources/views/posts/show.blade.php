@@ -48,7 +48,6 @@
             </form>
         </div>
         @endforeach
-        
         <form action="/comment/{{ $post->id }}" method="post">
         @csrf
         <textarea name="comment" rows="3" cols="50" placeholder="コメントを入力してください"></textarea>

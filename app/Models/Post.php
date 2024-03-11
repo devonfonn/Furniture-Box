@@ -56,7 +56,8 @@ class Post extends Model
       return false;
     }
   }
-   
+  
+  
     protected $fillable = [
        'title',
        'image',

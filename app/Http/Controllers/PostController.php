@@ -60,12 +60,22 @@ class PostController extends Controller
     
     public function store(Request $request, Post $post)
     {
-            $input = $request['post'];
-            if (!$input['image'] == null) {
-            $post->image=$input['image'];
-         }
-        $post->fill($input)->save();
-        return redirect('/posts/' . $post->id);
+       // フォームからのデータを取得
+    $input = $request['post'];
+
+    // ファイルがアップロードされているかを確認
+    if ($request->hasFile('image')) {
+        // アップロードされたファイルの保存
+        $imagePath = $request->file('image')->store('images');
+
+        // 画像のパスを投稿データにセット
+        $input['image'] = $imagePath;
+    }
+    // 投稿データをモデルに埋め込んで保存
+    $post->fill($input)->save();
+
+    // 投稿の詳細ページにリダイレクト
+    return redirect('/posts/' . $post->id);
     }  
     
     public function edit(Post $post)
@@ -85,13 +95,13 @@ class PostController extends Controller
          return redirect('/');
     }
     
-    public function search(Request $request)
+    public function search(Post $post, Request $request)
     {
         $query = $request->input('query');
-        $posts = Post::where('title', '%'.$query.'%')
-                     ->orWhere('caption', '%'.$query.'%')
+        $posts = Post::where('title', 'like', '%'.$query.'%')
+                     ->orWhere('caption', 'like', '%'.$query.'%')
                      ->get();
-        return view('posts.search_results', compact('posts', 'query'));            
+        return view('posts.search')->with(['posts' => $posts, 'query' => $query]);            
     }
     
     public function delete(Post $post)
