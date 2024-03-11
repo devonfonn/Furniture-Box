@@ -23,6 +23,7 @@ class PostSeeder extends Seeder
             'caption' => '家具やインテリアの説明をする。',
             'created_at' => new DateTime(),
             'updated_at' => new DateTime(),
+            'category_id' => '1',
             ]);
             
     }

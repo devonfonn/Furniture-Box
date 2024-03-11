@@ -11,13 +11,6 @@
       </head>
       <body>
           <h1>Furniture Site</h1>
-          <!-- 検索フォーム -->
-        <form action="{{ route('posts.search') }}" method="POST">
-            @csrf
-            <input type="text" name="query" placeholder="検索キーワードを入力">
-            <button type="submit">検索</button>
-        </form>
-
           <a href='/posts/create'>create</a>
           <div class='posts'>
               @foreach ($posts as $post)
@@ -52,7 +45,4 @@
       </body>
        {{ Auth::user()->name }}
       </x-app-layout>
-</html>      
-   
-       
-    
+</html>    

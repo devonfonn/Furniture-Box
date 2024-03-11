@@ -19,10 +19,21 @@
                       <h2>Title</h2>
                       <input type='text' name='post[title]' value="{{ $post->title }}">
                   </div>
-                      <div class='content__caption'>
-                          <h2>Caption</h2>
-                          <input type='text' name='post[caption]' value="{{ $post->caption }}">
-                      </div>
+                   <div class="image">
+                     <h2>Image</h2>
+                    @if (isset($post->image))
+                        <img src="{{ asset('storage/' . $post->image) }}" alt="Current Image" style="max-width: 200px;">
+                        <p>{{ $post->image }}</p>
+                    @else
+                        <p>画像がありません。</p>
+                    @endif
+                     <label for="image">新しい画像を選択してください</label>
+                     <input type="file" name="post[image]" class="form-control-file" id="image" name="image" value="{{ $post->image }}">
+                   </div>
+                   <div class='content__caption'>
+                     <h2>Caption</h2>
+                      <input type='text' name='post[caption]' value="{{ $post->caption }}">
+                    </div>
                       <input type="submit" value="保存">
               </form>
           </div>

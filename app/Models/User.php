@@ -17,6 +17,17 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+     
+     public function comment()
+    {
+        return $this->belongsTo(Comment::class);
+    }
+    
+    public function favorite_user()
+   {
+       return $this->hasMany(favorite_user::class, 'user_id');
+   }
+    
     protected $fillable = [
         'name',
         'email',
